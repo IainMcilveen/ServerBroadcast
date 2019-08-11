@@ -44,6 +44,7 @@ public class Broadcast {
 				
 				randomIndex = (int) (Math.random() * (messages.length));
 				randomColour = (int) (Math.random() * (textColours.length));
+				
 				if(lastmsg == null) {
 					lastmsg = messages[randomIndex];
 				}else {
@@ -56,16 +57,19 @@ public class Broadcast {
 
 		};
 		// main, start delay, delay between running 20: 20 ticks : 1 second real time.
+		System.out.println("broke out");
+		
 		if(cancelled == true) {
 			currentTime = pendingChanges;
 			pendingChanges = 0;
 			cancelled = false;	
 			System.out.println("in");
+
 		}
+		
 		System.out.println("out");
 		runnable.runTaskTimer(main, 0, 20 * currentTime);
 		
-
 	}
 	
 
