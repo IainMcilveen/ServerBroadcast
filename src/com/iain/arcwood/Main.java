@@ -9,11 +9,15 @@ public class Main extends JavaPlugin {
 		super.onEnable();
 		
 		Broadcast broadcast = new Broadcast(this);
+		CommandHandle commandhandle = new CommandHandle(broadcast,this);
 		
+		this.getCommand("rmb").setExecutor(commandhandle);
+
 	}
 	
 	@Override
 	public void onDisable() {
 		super.onDisable();
 	}
+	
 }
