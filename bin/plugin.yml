@@ -1,0 +1,4 @@
+name: Server Broadcast
+version: 1.0
+main: com.iain.arcwood.Main
+api-version: 1.14
