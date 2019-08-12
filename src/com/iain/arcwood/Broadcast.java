@@ -10,8 +10,9 @@ public class Broadcast {
 	private String[] textColours = { "&b", "&4", "&c", "&6", "&e", "&a", "&9", "&d" };
 	public int pendingChanges = 0;
 	private Main main;
-	public boolean cancelled = false;
 	public boolean commandCalled = false;
+	public boolean killInstance = false;
+	public boolean instanceKilled = false;
 	public int currentTime = 5;
 	public BukkitRunnable runnableStore = null;
 	
@@ -26,10 +27,23 @@ public class Broadcast {
 		this.runnableStore = runnable;
 	}
 	
+	/*
 	public void setPending(int newTime) {
 		this.pendingChanges = newTime;
+		this.currentTime = newTime;
 		commandCalled = true;
+		killInstance = true;
 		System.out.println("set");
+	}
+	*/
+	public void setPending(int newTime) {
+		this.pendingChanges = newTime;
+		this.currentTime = newTime;
+		sendBroadcast(main);
+		System.out.println("renew");
+	}
+	
+	public void restart() {
 		sendBroadcast(main);
 	}
 
@@ -37,23 +51,21 @@ public class Broadcast {
 
 		BukkitRunnable runnable = new BukkitRunnable() {
 			
-			//main.setRunnable(this);
 			
 			String lastmsg = null;
 			int randomIndex;
 			int randomColour;
-			
-			public void kill() {
-				this.cancel();
-			}
 
 			@Override
 			public void run() {
-				if(pendingChanges > 0) {
-					System.out.println("pended changes");
-					cancelled = true;
-					runnableStore = this;
+				
+				if(killInstance == true) {
+					System.out.println("ins: "+currentTime);
+					System.out.println("killed it");
+					killInstance = false;
+					instanceKilled = true;
 					this.cancel();
+					
 				}
 				
 				randomIndex = (int) (Math.random() * (messages.length));
@@ -66,6 +78,7 @@ public class Broadcast {
 						randomIndex = (int) (Math.random() * (messages.length));
 					}
 				}
+				System.out.println("bb ct: "+currentTime);
 				Bukkit.broadcastMessage((textColours[randomColour] + messages[randomIndex]).replaceAll("(?<!\\\\)&(?=[0-9A-fK-o])", "§"));
 			}
 
@@ -73,20 +86,17 @@ public class Broadcast {
 		// main, start delay, delay between running 20: 20 ticks : 1 second real time.
 		System.out.println("broke out");
 		
-		if(cancelled == true) {
-			currentTime = pendingChanges;
-			pendingChanges = 0;
-			System.out.println("ctime: "+currentTime+" ptime: "+pendingChanges);
-			cancelled = false;	
-			System.out.println("in");
-		}
-		
 		if(commandCalled == true) {
 			currentTime = pendingChanges;
 			pendingChanges = 0;
 			commandCalled = false;
 			System.out.println("incommandcalled");
-			
+		}
+		
+		if(instanceKilled == true) {
+			System.out.println("creating new instance");
+			sendBroadcast(main);
+			instanceKilled = false;
 		}
 		System.out.println("out");
 		runnable.runTaskTimer(main, 0, 20 * currentTime);
