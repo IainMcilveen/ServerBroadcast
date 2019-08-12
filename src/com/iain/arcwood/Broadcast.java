@@ -23,11 +23,11 @@ public class Broadcast {
 		currentRunnable.cancel();
 		sendBroadcast(main);
 	}
-	
+
 	public void setRunnable(BukkitRunnable runnable) {
 		this.currentRunnable = runnable;
 	}
-	
+
 	public BukkitRunnable getRunnable() {
 		return this.currentRunnable;
 	}
@@ -35,11 +35,11 @@ public class Broadcast {
 	public void sendBroadcast(Main main) {
 
 		BukkitRunnable runnable = new BukkitRunnable() {
-			
+
 			String lastmsg = null;
 			int randomIndex;
 			int randomColour;
-			
+
 			@Override
 			public void run() {
 
@@ -53,9 +53,7 @@ public class Broadcast {
 						randomIndex = (int) (Math.random() * (messages.length));
 					}
 				}
-				System.out.println(this);
-				System.out.println("bb ct: " + currentTime);
-				if(getRunnable() != this) {
+				if (getRunnable() != this) {
 					setRunnable(this);
 				}
 				Bukkit.broadcastMessage((textColours[randomColour] + messages[randomIndex]).replaceAll("(?<!\\\\)&(?=[0-9A-fK-o])", "§"));
