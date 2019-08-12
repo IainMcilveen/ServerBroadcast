@@ -11,6 +11,7 @@ public class Broadcast {
 	public int pendingChanges = 0;
 	private Main main;
 	public boolean cancelled = false;
+	public boolean commandCalled = false;
 	public int currentTime = 5;
 	public BukkitRunnable runnableStore = null;
 	
@@ -21,8 +22,13 @@ public class Broadcast {
 
 	}
 	
+	public void setRunnable(BukkitRunnable runnable) {
+		this.runnableStore = runnable;
+	}
+	
 	public void setPending(int newTime) {
 		this.pendingChanges = newTime;
+		commandCalled = true;
 		System.out.println("set");
 		sendBroadcast(main);
 	}
@@ -31,9 +37,15 @@ public class Broadcast {
 
 		BukkitRunnable runnable = new BukkitRunnable() {
 			
+			//main.setRunnable(this);
+			
 			String lastmsg = null;
 			int randomIndex;
 			int randomColour;
+			
+			public void kill() {
+				this.cancel();
+			}
 
 			@Override
 			public void run() {
@@ -69,7 +81,13 @@ public class Broadcast {
 			System.out.println("in");
 		}
 		
-		
+		if(commandCalled == true) {
+			currentTime = pendingChanges;
+			pendingChanges = 0;
+			commandCalled = false;
+			System.out.println("incommandcalled");
+			
+		}
 		System.out.println("out");
 		runnable.runTaskTimer(main, 0, 20 * currentTime);
 		
