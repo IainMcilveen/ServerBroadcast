@@ -18,7 +18,6 @@ public class CommandHandle implements CommandExecutor {
 		if (label.equals("rmb")) {
 			try {
 				newTime = Integer.parseInt(args[0]);
-				System.out.println(newTime);
 				broadcast.setPending(newTime);
 			} catch (Exception e) {
 				System.out.println("killed itself");
