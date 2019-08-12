@@ -7,11 +7,10 @@ import org.bukkit.command.CommandSender;
 public class CommandHandle implements CommandExecutor {
 	
 	private Broadcast broadcast;
-	private Main main;
+
 	
-	public CommandHandle(Broadcast broadcast, Main main) {
+	public CommandHandle(Broadcast broadcast) {
 		this.broadcast = broadcast;
-		this.main = main;
 	}
 	
 	@Override

@@ -9,7 +9,7 @@ public class Main extends JavaPlugin {
 		super.onEnable();
 		
 		Broadcast broadcast = new Broadcast(this);
-		CommandHandle commandhandle = new CommandHandle(broadcast,this);
+		CommandHandle commandhandle = new CommandHandle(broadcast);
 		
 		this.getCommand("rmb").setExecutor(commandhandle);
 
