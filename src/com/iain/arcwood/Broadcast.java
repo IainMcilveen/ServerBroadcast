@@ -10,8 +10,9 @@ public class Broadcast {
 	private String[] textColours = { "&b", "&4", "&c", "&6", "&e", "&a", "&9", "&d" };
 	public int pendingChanges = 0;
 	private Main main;
-	private boolean cancelled = false;
+	public boolean cancelled = false;
 	public int currentTime = 5;
+	public BukkitRunnable runnableStore = null;
 	
 	
 	public Broadcast(Main main) {
@@ -39,6 +40,7 @@ public class Broadcast {
 				if(pendingChanges > 0) {
 					System.out.println("pended changes");
 					cancelled = true;
+					runnableStore = this;
 					this.cancel();
 				}
 				
@@ -62,10 +64,11 @@ public class Broadcast {
 		if(cancelled == true) {
 			currentTime = pendingChanges;
 			pendingChanges = 0;
+			System.out.println("ctime: "+currentTime+" ptime: "+pendingChanges);
 			cancelled = false;	
 			System.out.println("in");
-
 		}
+		
 		
 		System.out.println("out");
 		runnable.runTaskTimer(main, 0, 20 * currentTime);
