@@ -7,9 +7,11 @@ import org.bukkit.command.CommandSender;
 public class CommandHandle implements CommandExecutor {
 
 	private Broadcast broadcast;
+	private Main main;
 
-	public CommandHandle(Broadcast broadcast) {
+	public CommandHandle(Broadcast broadcast, Main main) {
 		this.broadcast = broadcast;
+		this.main = main;
 	}
 
 	@Override
@@ -25,7 +27,10 @@ public class CommandHandle implements CommandExecutor {
 			if(args.length > 1 && args[1] instanceof String && args[1].toUpperCase().equals("M")) {
 				newTime *= 60;
 			}
+			main.setCurrentTime(newTime);
 			broadcast.setPending(newTime);
+			
+			
 			
 
 		}
