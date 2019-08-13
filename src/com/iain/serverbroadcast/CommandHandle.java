@@ -1,4 +1,4 @@
-package com.iain.arcwood;
+package com.iain.serverbroadcast;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;

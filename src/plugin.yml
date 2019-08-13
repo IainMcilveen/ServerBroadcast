@@ -1,6 +1,6 @@
 name: ServerBroadcast
 version: 1.0
-main: com.iain.arcwood.Main
+main: com.iain.serverbroadcast.Main
 api-version: 1.14
 commands:
   rmb:
