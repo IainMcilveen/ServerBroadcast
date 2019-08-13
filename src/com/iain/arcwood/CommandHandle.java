@@ -18,11 +18,15 @@ public class CommandHandle implements CommandExecutor {
 		if (label.equals("rmb")) {
 			try {
 				newTime = Integer.parseInt(args[0]);
-				broadcast.setPending(newTime);
 			} catch (Exception e) {
-				System.out.println("killed itself");
-				newTime = 5;
+				return false;
 			}
+			
+			if(args.length > 1 && args[1] instanceof String && args[1].toUpperCase().equals("M")) {
+				newTime *= 60;
+			}
+			broadcast.setPending(newTime);
+			
 
 		}
 		return true;

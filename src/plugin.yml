@@ -6,4 +6,4 @@ commands:
   rmb:
     description: change the amount of time between messages in seconds or minutes.
     permission: arcwood.rmb
-    usage: /rmb
+    usage: /rmb [Number] [minutes or seconds (M/S)] 
