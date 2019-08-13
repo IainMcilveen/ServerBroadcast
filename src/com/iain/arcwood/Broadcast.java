@@ -9,7 +9,8 @@ public class Broadcast {
 	private String[] messages = { "xd", "Hello, World!", "This is a test", "die xd", "this is dumb","i just needed a longer array", "this perhaps is a test", "wtf is this xd" };
 	private String[] textColours = { "&b", "&4", "&c", "&6", "&e", "&a", "&9", "&d" };
 	private Main main;
-	public int currentTime = 5;
+	//public int currentTime = 5;
+	public int currentTime = main.getCurrentTime();
 	public BukkitRunnable currentRunnable = null;
 
 	public Broadcast(Main main) {

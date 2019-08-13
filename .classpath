@@ -6,7 +6,7 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="lib" path="C:/spigot/spigot-1.14.4.jar" sourcepath="C:/spigot/src"/>
-	<classpathentry kind="lib" path="C:/java files/libraries/json-simple-3.1.0.jar"/>
+	<classpathentry kind="lib" path="C:/spigot/spigot-1.14.4.jar" sourcepath="C:/java files/libraries/JSON/src"/>
+	<classpathentry kind="lib" path="C:/java files/libraries/JSON/json.jar" sourcepath="C:/java files/libraries/JSON/src"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
