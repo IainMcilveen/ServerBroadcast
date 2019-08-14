@@ -67,8 +67,6 @@ public class Main extends JavaPlugin {
 
 		obj.put("text", text);
 
-		System.out.println(" >> " + obj);
-
 		try {
 			FileWriter file = new FileWriter(json);
 			file.write(obj.toJSONString());
