@@ -98,7 +98,7 @@ public class Main extends JavaPlugin {
 
 		readJson(config);
 
-		Broadcast broadcast = new Broadcast(this);
+		Broadcast broadcast = new Broadcast(this,this.messages);
 		CommandHandle commandhandle = new CommandHandle(broadcast, this);
 		this.getCommand("rmb").setExecutor(commandhandle);
 
