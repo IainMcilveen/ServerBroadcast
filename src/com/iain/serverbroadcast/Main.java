@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 
+import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -48,6 +49,10 @@ public class Main extends JavaPlugin {
 			}
 
 		} catch (IOException | org.json.simple.parser.ParseException e) {
+			String[] temp = {"Please update config.json with new broadcasts","this is the default config.json file used when none is found"};
+			messages.add(temp);
+			currentTime = 5;
+			
 			e.printStackTrace();
 		}
 
@@ -124,6 +129,10 @@ public class Main extends JavaPlugin {
 
 	public void setCurrentTime(int newCurrentTime) {
 		this.currentTime = newCurrentTime;
+	}
+	
+	public File getPluginDataFolder() {
+		return this.getDataFolder();
 	}
 
 }
